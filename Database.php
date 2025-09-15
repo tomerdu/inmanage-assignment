@@ -45,3 +45,4 @@ class Database {
         return $stmt->execute($params);
     }
 }
+

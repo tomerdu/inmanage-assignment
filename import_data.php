@@ -31,11 +31,10 @@ echo "Users imported successfully!<br>";
 $posts = fetchJson("https://jsonplaceholder.typicode.com/posts");
 
 foreach ($posts as $post) {
-    $created_at = date("Y-m-d H:i:s", strtotime("-" . rand(0, 30) . " days"));
 
     $db->insert(
-        "INSERT INTO posts (id, user_id, title, body, created_at, active) VALUES (?, ?, ?, ?, ?, ?)",
-        [$post['id'], $post['userId'], $post['title'], $post['body'], $created_at, 1]
+        "INSERT INTO posts (id, user_id, title, body, active) VALUES (?, ?, ?, ?, ?)",
+        [$post['id'], $post['userId'], $post['title'], $post['body'], 1]
     );
 }
 
