@@ -44,7 +44,7 @@ The ERD of the project is available in the `docs/` folder.
 
 Clone the repository:
    ```bash
-   git clone https://github.com/your-username/inmanage-assignment.git
+   git clone https://github.com/tomerdu/inmanage-assignment/
    cd inmanage-assignment
 
 
