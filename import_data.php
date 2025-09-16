@@ -12,7 +12,6 @@ function fetchJson($url) {
 }
 
 // USERS
-
 $users = fetchJson("https://jsonplaceholder.typicode.com/users");
 
 foreach ($users as $user) {
@@ -27,14 +26,23 @@ foreach ($users as $user) {
 echo "Users imported successfully!<br>";
 
 // POSTS 
-
 $posts = fetchJson("https://jsonplaceholder.typicode.com/posts");
 
 foreach ($posts as $post) {
+    
+    $randomDays = rand(0, 30);
+    $randomHours = rand(0, 23);
+    $randomMinutes = rand(0, 59);
+    $randomSeconds = rand(0, 59);
+
+    $created_at = date(
+        "Y-m-d H:i:s",
+        strtotime("-$randomDays days $randomHours hours $randomMinutes minutes $randomSeconds seconds")
+    );
 
     $db->insert(
-        "INSERT INTO posts (id, user_id, title, body, active) VALUES (?, ?, ?, ?, ?)",
-        [$post['id'], $post['userId'], $post['title'], $post['body'], 1]
+        "INSERT INTO posts (id, user_id, title, body, created_at, active) VALUES (?, ?, ?, ?, ?, ?)",
+        [$post['id'], $post['userId'], $post['title'], $post['body'], $created_at, 1]
     );
 }
 

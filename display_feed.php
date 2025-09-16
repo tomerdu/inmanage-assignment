@@ -4,10 +4,11 @@ require 'Database.php';
 $db = new Database();
 
 $results = $db->select("
-    SELECT u.id, u.name, u.email, p.title, p.body
+    SELECT u.id, u.name, u.email, p.title, p.body, p.created_at
     FROM users u
     JOIN posts p ON u.id = p.user_id
-    WHERE u.active = 1");
+    WHERE u.active = 1
+    ORDER BY p.created_at DESC");
 
 $avatarPath = "public/avatar.jpg";
 ?>
@@ -51,6 +52,7 @@ $avatarPath = "public/avatar.jpg";
                 <img src="<?= $avatarPath ?>" alt="avatar">
                 <div>
                     <div><?= htmlspecialchars($row['name']) ?></div>
+                    <div class="date"><?= htmlspecialchars($row['created_at']) ?></div>
                 </div>
             </div>
             <div class="title"><?= htmlspecialchars($row['title']) ?></div>

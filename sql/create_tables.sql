@@ -16,6 +16,7 @@ CREATE TABLE posts (
     user_id INT NOT NULL,
     title VARCHAR(200) NOT NULL,
     body TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     active TINYINT(1) DEFAULT 1,
     FOREIGN KEY (user_id) REFERENCES users(id)
         ON DELETE CASCADE
